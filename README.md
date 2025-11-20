@@ -45,14 +45,13 @@ Aptos CLI is now set up for account 0xac3b25cf6ba24f259ee2c8289c39e25efc02408d56
 ---
 
 The account has not been funded on chain yet. To fund the account and get APT on testnet you must visit https://aptos.dev/network/faucet?address=0xac3b25cf6ba24f259ee2c8289c39e25efc02408d562b475d716f8f6f6f43e247
-Press [Enter] to go there now > 
+Press [Enter] to go there now >
 
 （此处如果回车则直接进入水龙头网址前往领水，与下方 步骤 2 相同）
 
 ```
 
 当前命令中的输出结果中的 `0xac3b25cf6ba24f259ee2c8289c39e25efc02408d562b475d716f8f6f6f43e247` 是你的地址（可以认为是在 Blockchain 中的账号
-
 
 ```
 ---
@@ -75,11 +74,9 @@ profiles:
     rest_url: "https://fullnode.testnet.aptoslabs.com"
 ```
 
-
-
 ### 2. 获取测试币
 
-可以通过 `aptos account balance` 命令查看当前地址的余额 
+可以通过 `aptos account balance` 命令查看当前地址的余额
 
 有两种方式可以获取测试币：
 
@@ -127,6 +124,16 @@ aptos move view --function-id <你的账户地址>::message::get_message
 aptos move run --function-id <你的账户地址>::message::set_message --args string:"Hello, Aptos!"
 ```
 
+_注意：Aptos CLI 的 --args string: 参数格式要求严格，而 string:"hello Katerina!" 这种写法会让 shell 把双引号、空格等字符误解析，从而出现 <dquote>（提示你还没结束引号）。_
+
+#### 🌟 最推荐 & 最简单写法：用单引号包整个参数
+
+```bash
+aptos move run \
+  --function-id 0xb630e99a0ff68556a13d719a5a1083bdc446e9681c59ce0a78d1c28d9dd1080c::message::set_message \
+  --args 'string:Hello Katerina!'
+```
+
 ### 6. 验证修改
 
 再次查询消息，确认修改成功：
@@ -158,4 +165,3 @@ aptos move test
 - 确保已安装 Aptos CLI 工具
 - 首次发布需要足够的测试币支付 gas 费用
 - 模块地址需要在发布前正确设置
-
